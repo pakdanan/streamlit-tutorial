@@ -15,7 +15,7 @@ st.title("Power Plants in Indonesia")
 
 @st.cache_data
 def load_powerplants():
-    url = "https://global-power-plants.datasettes.com/global-power-plants/global-power-plants.csv"
+    url = "https://global-power-plants.datasettes.com/global-power-plants/global-power-plants.csv?_sort=rowid&country_long__exact=Indonesia&_size=max"
     return pd.read_csv(url, index_col=0)
 
 

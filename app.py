@@ -29,19 +29,13 @@ with st.sidebar:
 
     tech = st.selectbox(
         "Select a technology",
-        ppl.Fueltype.unique(),
+        ppl.primary_fuel.unique(),
     )
 
-    start, end = st.slider(
-        "Range of commissioning years", 1900, 2022, (1900, 2022), step=1, help="Pick years!"
-    )
 
-st.warning(":building_construction: Sorry, this page is still under construction")
+hover_data = ['name', 'primary_fuel', "capacity_mw", 'owner']
 
-hover_data = ['Name', 'Fueltype', 'Technology',
-              "Capacity", 'Efficiency', 'DateIn']
-
-df = ppl.query("Fueltype == @tech and DateIn >= @start and DateIn <= @end")
+df = ppl.query("primary_fuel == @tech")
 
 if not df.empty:
     fig = px.scatter_mapbox(
@@ -49,12 +43,12 @@ if not df.empty:
         lat="lat",
         lon="lon",
         mapbox_style="carto-positron",
-        color="DateIn",
-        size="Capacity",
+        #        color="DateIn",
+        size="capacity_mw",
         zoom=2,
         height=700,
         hover_data=hover_data,
-        range_color=(1900, 2022),
+        #        range_color=(1900, 2022),
     )
 
     st.plotly_chart(fig, use_container_width=True)

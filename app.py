@@ -20,22 +20,22 @@ def load_powerplants():
     return pd.read_csv("id-power-plants.csv", index_col=0)
 
 
-ppl = load_powerplants()
+df = load_powerplants()
 
 with st.sidebar:
     st.title("Data Science for Energy System Modelling")
 
     st.markdown(":+1: This notebook introduces you to the `streamlit` library.")
 
-    tech = st.selectbox(
-        "Select a technology",
-        ppl.primary_fuel.unique(),
-    )
+    # tech = st.selectbox(
+    #     "Select a technology",
+    #     ppl.primary_fuel.unique(),
+    # )
 
 
 hover_data = ['name', 'primary_fuel', "capacity_mw", 'owner']
 
-df = ppl.query("primary_fuel == @tech")
+# df = ppl.query("primary_fuel == @tech")
 
 if not df.empty:
     fig = px.scatter_mapbox(
@@ -43,7 +43,7 @@ if not df.empty:
         lat="latitude",
         lon="longitude",
         mapbox_style="carto-positron",
-        #        color="DateIn",
+        color="primary_fuel",
         size="capacity_mw",
         zoom=2,
         height=700,

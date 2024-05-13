@@ -6,9 +6,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="Power Plants", layout="wide")
-
-# st.balloons()
 
 st.title("Power Plants in Indonesia")
 
@@ -21,10 +18,9 @@ def load_powerplants():
 
 df = load_powerplants()
 
-with st.sidebar:
-    st.title("Data Science for Energy System Modelling")
-
-    st.markdown(":+1: This notebook introduces you to the `streamlit` library.")
+st.sidebar.title("Data Science for Energy System Modelling")
+st.sidebar.markdown(
+    ":+1: This notebook introduces you to the `streamlit` library.")
 
 
 hover_data = ['name', 'primary_fuel', "capacity_mw", 'owner']

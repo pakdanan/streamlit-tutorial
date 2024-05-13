@@ -15,8 +15,10 @@ st.title("Power Plants in Europe")
 
 @st.cache_data
 def load_powerplants():
-    url = "https://raw.githubusercontent.com/PyPSA/powerplantmatching/master/powerplants.csv"
-    return pd.read_csv(url, index_col=0)
+    # url = "https://raw.githubusercontent.com/PyPSA/powerplantmatching/master/powerplants.csv"
+    # return pd.read_csv(url, index_col=0)
+    return pd.read_csv("id-power-plants.csv", index_col=0)
+
 
 ppl = load_powerplants()
 
@@ -36,7 +38,8 @@ with st.sidebar:
 
 st.warning(":building_construction: Sorry, this page is still under construction")
 
-hover_data = ['Name', 'Fueltype', 'Technology', "Capacity", 'Efficiency', 'DateIn']
+hover_data = ['Name', 'Fueltype', 'Technology',
+              "Capacity", 'Efficiency', 'DateIn']
 
 df = ppl.query("Fueltype == @tech and DateIn >= @start and DateIn <= @end")
 

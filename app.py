@@ -40,8 +40,8 @@ df = ppl.query("primary_fuel == @tech")
 if not df.empty:
     fig = px.scatter_mapbox(
         df,
-        lat="lat",
-        lon="lon",
+        lat="latitude",
+        lon="longitude",
         mapbox_style="carto-positron",
         #        color="DateIn",
         size="capacity_mw",

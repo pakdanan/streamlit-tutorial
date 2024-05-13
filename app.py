@@ -10,14 +10,13 @@ st.set_page_config(page_title="Power Plants", layout="wide")
 
 # st.balloons()
 
-st.title("Power Plants in Europe")
+st.title("Power Plants in Indonesia")
 
 
 @st.cache_data
 def load_powerplants():
-    # url = "https://raw.githubusercontent.com/PyPSA/powerplantmatching/master/powerplants.csv"
-    # return pd.read_csv(url, index_col=0)
-    return pd.read_csv("id-power-plants.csv", index_col=0)
+    url = "https://global-power-plants.datasettes.com/global-power-plants/global-power-plants.csv"
+    return pd.read_csv(url, index_col=0)
 
 
 df = load_powerplants()
@@ -27,15 +26,9 @@ with st.sidebar:
 
     st.markdown(":+1: This notebook introduces you to the `streamlit` library.")
 
-    # tech = st.selectbox(
-    #     "Select a technology",
-    #     ppl.primary_fuel.unique(),
-    # )
-
 
 hover_data = ['name', 'primary_fuel', "capacity_mw", 'owner']
 
-# df = ppl.query("primary_fuel == @tech")
 
 if not df.empty:
     fig = px.scatter_mapbox(
@@ -48,7 +41,6 @@ if not df.empty:
         zoom=2,
         height=700,
         hover_data=hover_data,
-        #        range_color=(1900, 2022),
     )
 
     st.plotly_chart(fig, use_container_width=True)
